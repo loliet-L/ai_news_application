@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useRef } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button,  Alert } from "react-bootstrap";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router";
+import "./signup.css";
 
 const SignUp = () => {
   const emailRef = useRef();
@@ -32,32 +33,64 @@ const SignUp = () => {
 
   return (
     <>
-      <Card>
-        <Card.Body>
-          <h2 className="text-center mb-4">Sign Up</h2>
+       <div className="containerC">
+      <div className="forms-container">
+        <div className="signin-signup">
+        <Form onSubmit={handleSubmit} className="sign-in-form">
+          <h2 className="title">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
-          <Form onSubmit={handleSubmit}>
+          <div className="input-field">
+              <i className="fas fa-envelope"></i>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
 
               <Form.Control type="email" ref={emailRef} required />
             </Form.Group>
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" ref={passwordRef} required />
             </Form.Group>
+
+            </div>
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
             <Form.Group id="password-confirm">
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type="password" ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button disabled={loading} className="w-100 mt-2" type="submit">
+            </div>
+
+            <p id="sign-in-info">
+              Have an account ?,{" "}
+              <Link  className="signinbtn" to="/login">
+                Sign-in
+              </Link>
+              .
+            </p>
+            <Button disabled={loading} className="btn1" type="submit">
               Sign Up
             </Button>
           </Form>
-        </Card.Body>
-      </Card>
-      <div className="w-100 text-center mt-2">
+
+          </div>
+          </div>
+          
+      {/* <div className="w-100 text-center mt-2">
         Already have an account ? <Link to="/login">Log In </Link>
+      </div> */}
+
+      <div className="panels-container">
+        <div className="panel left-panel">
+          <img
+            src="https://www.oots.in/frontend/images/registration-pro.png"
+            className="image"
+            alt=""
+          />
+        </div>
+      </div>
       </div>
     </>
   );
